@@ -41,9 +41,7 @@ class CSVTimeSeriesFile:
             file_length += 1
 
         if(file_length == 0):
-            raise ExamException('Error - Value list empty \n')
-        if(file_length < 28):
-            raise ExamException('Error - Not enough values for each day of the month available \n')
+            raise ExamException('Value list empty \n')
         
         #Resetting file "index" to the first line
         afile.seek(0, 0)
@@ -123,16 +121,6 @@ class CSVTimeSeriesFile:
 #Declaring Function to calculate requested days statistics
 def daily_stats(time_series):
 
-    #Checking whether passed argument type is correct
-    x = isinstance(time_series, list)
-    if(x is False):
-        raise ExamException('Time_series argument should be list type \n')
-
-    for item in time_series:
-        z = isinstance(item, list)
-        if(z is False):
-            raise ExamException('At least one element of time_series argument is Not a nested list')
-
     list_to_return = [ ]
 
     epoch_to_days_list = [ ]
@@ -169,12 +157,6 @@ def daily_stats(time_series):
         wrapper = [ min_number, max_number, sum_value/working_list_length ]
         list_to_return.append(wrapper)
 
-    #Being sure to have a real amount of days in a month
-    eventual_values = [28, 29, 30, 31]
-
-    if( len(list_to_return) not in eventual_values):
-        raise ExamException('Invalid number of days in month computed from input list')
-
     return list_to_return
 
 
@@ -189,5 +171,4 @@ time_series = time_series_file.get_data()
 results = daily_stats(time_series)
 
 #Printing each element of results list variable
-for item in results:
-    print(item)
+print(results)
