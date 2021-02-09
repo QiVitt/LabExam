@@ -58,15 +58,15 @@ class CSVTimeSeriesFile:
                 elements[1] = elements[1].strip()
 
                 if(len(elements) != 2):
-                    print('Invalid amount of elements on line {}'.format(line))
+                    #print('Invalid amount of elements on line {}'.format(line))
                     continue
 
                 if(elements[0] == 'epoch' or elements[0] == 'temperature'):
-                    print('Skipping Header line {}'.format(line))
+                    #print('Skipping Header line {}'.format(line))
                     continue
 
                 if(elements[1] == 'epoch' or elements[1] == 'temperature'):
-                    print('Skipping Header line {}'.format(line))
+                    #print('Skipping Header line {}'.format(line))
                     continue
 
                 timestamp_int_converted = int( float(elements[0]) )
@@ -75,22 +75,22 @@ class CSVTimeSeriesFile:
                 eventual_errors = ['', ' ', 'None', None]
 
                 if(timestamp_int_converted in eventual_errors):
-                    print('Invalid input line : {}'.format(line))
+                    #print('Invalid input line : {}'.format(line))
                     continue
 
                 if(timestamp_int_converted < 0):
-                    print('Invalid input line : {}'.format(line))
+                    #print('Invalid input line : {}'.format(line))
                     continue
 
                 if(temperature_float_converted in eventual_errors):
-                    print('Invalid input line : {}'.format(line))
+                    #print('Invalid input line : {}'.format(line))
                     continue
 
                 wrapper = [ timestamp_int_converted, temperature_float_converted ]
                 list_to_return.append(wrapper)
 
             except:
-                print('Invalid input line : {}'.format(line))
+                #print('Invalid input line : {}'.format(line))
                 continue
 
         #Don't forget to close the file previously opened
